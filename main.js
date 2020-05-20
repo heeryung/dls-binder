@@ -1,1 +1,0 @@
-window.seedrandom = require('seedrandom')
