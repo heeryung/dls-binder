@@ -5,7 +5,7 @@ define([
     'base/js/dialog',
     'base/js/i18n',
     'nbextensions/showdown',
-    'nbextensions/url',    
+    'nbextensions/url',
     'nbextensions/username',
     'nbextensions/external/seedrandom'
 ], function ($,
@@ -64,18 +64,18 @@ define([
 //         var random_before = Math.floor(Math.random() * 3);
 //         var random_after = Math.floor(Math.random() * 3 + 3);
 //         localStorage.setItem("random_before", random_before);
-//         localStorage.setItem("random_after", random_after);   
+//         localStorage.setItem("random_after", random_after);
 //         console.log("0");
 //     }
- 
+
 
     var random_before = Math.floor(Math.random() * 3);
     var random_after = Math.floor(Math.random() * 3 + 3);
     localStorage.setItem("random_before", random_before);
-    localStorage.setItem("random_after", random_after);   
+    localStorage.setItem("random_after", random_after);
 
-    
-    
+
+
 // //	var random_before = 0;
 // //	var random_after = 0;
 
@@ -83,12 +83,12 @@ define([
     var num_type_2 = type_2_questions.length;
     var num_type_3 = type_3_questions.length;
     var num_type_4 = type_4_questions.length;
- 
-    
+
+
 //    var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
 //    var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
-//    var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after 
-//    var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after 
+//    var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
+//    var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
 
     function dispatchAssignConditionEvent() {
         let eventTitle = "AssignHintConditionEvent";
@@ -142,8 +142,8 @@ define([
 
     //	var random_before = 0;
     //	var random_after = 0;
-        
-        
+
+
         // type: <hint/prompt>
         // typeId: <1/2>
         function dispatchHintEvent(type, typeId = null, hint = null) {
@@ -291,7 +291,7 @@ define([
 
         function type_2_before(hintText, hint) {
             // dispatchHintEvent("prompt", "2", hint);
-            var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before            
+            var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + type_2_questions[random_2] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
@@ -324,11 +324,11 @@ define([
 
         function hint_text(hintText, hint) {
             // dispatchHintEvent("hint", null, hint);
-                        
+
             var converter = new showdown.Converter(),
             text = hintText,
             htmltext = converter.makeHtml(text);
-            
+
             var form = $("<form></form>").attr("id", "form");
 //            var hint_ar = $("<h4>" + hintText + "</div></h4>").attr("id", "prompt");
             var hint_ar = $("<h4>" + htmltext + "</h4>").attr("id", "prompt");
@@ -363,7 +363,7 @@ define([
 
         function type_3_after(hint) {
             // dispatchHintEvent("prompt", "3", hint);
-            var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after   
+            var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + type_3_questions[random_3] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
@@ -396,7 +396,7 @@ define([
 
         function type_4_after(hint) {
             // dispatchHintEvent("prompt", "4", hint);
-            var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after 
+            var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + type_4_questions[random_4] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
