@@ -1,11 +1,16 @@
 
 define([
         'require',
-        './external/aws-sdk',
-        './external/browser-bunyan',
-        './external/@browser-bunyan/server-stream',
-        './external/@browser-bunyan/console-raw-stream',
-        './external/kinesiswritable',
+        // './external/aws-sdk',
+        // './external/browser-bunyan',
+        // './external/@browser-bunyan/server-stream',
+        // './external/@browser-bunyan/console-raw-stream',
+        // './external/kinesiswritable',
+        'external/aws-sdk',
+        'external/browser-bunyan',
+        'external/@browser-bunyan/server-stream',
+        'external/@browser-bunyan/console-raw-stream',
+        'external/kinesiswritable',
         'nbextensions/username'
 ], function (require,
              AWS,
