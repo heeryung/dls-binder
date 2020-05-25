@@ -349,7 +349,7 @@ define([
                 // const queryString = encodeQueryData(data)
 
                 // let url = 'http://localhost:8000/'
-                let url = 'hhttps://umich.qualtrics.com/jfe/form/SV_bqfSTr198h7h7al'
+                let url = 'https://umich.qualtrics.com/jfe/form/SV_bqfSTr198h7h7al'
 
                 // build url
                 url += '?' + queryString
