@@ -23,6 +23,15 @@ jupyter nbextension enable submit --sys-prefix
 jupyter nbextension enable submitattempt --sys-prefix
 jupyter nbextension enable submitcontainer --sys-prefix
 jupyter nbextension enable submithack --sys-prefix
+jupyter nbextension enable submitfunction --sys-prefix
 jupyter nbextension enable textcell --sys-prefix
+jupyter nbextension enable timer --sys-prefix
+jupyter nbextension enable timersubmit --sys-prefix
 jupyter nbextension enable url --sys-prefix
 jupyter nbextension enable username --sys-prefix
+
+
+
+
+
+
