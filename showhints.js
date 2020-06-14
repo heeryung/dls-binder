@@ -325,7 +325,7 @@ define([
             dialog.modal({
                 title: i18n.msg._(' '),
                 keyboard_manager: Jupyter.notebook.keyboard_manager,
-                body: form,
+                body: form_0,
                 open: function () {
                     console.log("close")
                     $('.close').css('display', 'none');
@@ -334,7 +334,7 @@ define([
                 keyboard: false,
                 buttons: {
                     'Next': {
-                        'class': 'btn-primary', 'id': 'submit',
+                        'class': 'btn-primary', 'id': 'next',
                         'click': function () {
                             var chosenHint = document.getElementsByName('q_hint');
 
