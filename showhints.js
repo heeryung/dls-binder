@@ -350,7 +350,7 @@ define([
                                     var hint = array_hints[chosenHint[i].value - 1]; //chosenHint[i].value==hint_order
                                     // Todo: Should I require hint reponses?
                                     // Todo: link insertHint() here
-                                    insertHint(hint, part_id, index);
+                                    insertHint(hint, part_id);
                                 } else {
                                     console.log("close")
                                     $('.close').css('display', 'none');
@@ -537,10 +537,11 @@ define([
         }
 
 
-        function insertHint(hint, part_id, index) {
+        function insertHint(hint, part_id) {
             // Insert a markdown cell called "hint"
             var cells = Jupyter.notebook.get_cells();
             var index_hint = 0;
+            var index = hint.hint_id;
             // var array_hints = new Array();
             // $.each(Hints, function (index, hint) {
             //     var temp = {
