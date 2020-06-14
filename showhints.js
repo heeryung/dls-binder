@@ -305,10 +305,7 @@ define([
                 var which_list = $q3_hint_list;
             }
 
-            var form_0 = $("<form></form>").attr("id", "form_0");
-            var hintList = $("<h4>" + "List of hints for this questions" + "<br> <br>" + which_list + "</h4>").attr("id", "hintList");
-            form_0.append(hintList);
-
+            var form_0 = $("<h4>" + "List of hints for this questions" + "<br> <br>" + which_list + "</h4>").attr("id", "form_0");
 
             var array_hints = new Array();
             $.each(Hints, function (index, hint) {
