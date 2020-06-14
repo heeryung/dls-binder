@@ -353,7 +353,7 @@ define([
                     }
                 }
             })
-            dispatchHintEvent("list",null,hint);
+            dispatchHintEvent("list",null,null);
             // dispatchHintEvent("next", "4", hint);
         }
 
