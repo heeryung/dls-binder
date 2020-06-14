@@ -339,7 +339,7 @@ define([
                 backdrop: "static",
                 keyboard: false,
                 buttons: {
-                    'Submit': {
+                    'Next': {
                         'class': 'btn-primary', 'id': 'submit',
                         'click': function () {
                             var chosenHint = document.getElementsByName('q_hint');
@@ -350,15 +350,16 @@ define([
                                     // Todo: Should I require hint reponses?
                                     // Todo: link insertHint() here
                                     insertHint(hint, part_id, index);
-
+                                } else {
+                                    console.log("close")
+                                    $('.close').css('display', 'none');
                                 }
                             }
                         }
                     }
-                    dispatchHintEvent("hintChosen",null,hint)
                 }
             })
-            dispatchHintEvent("list",null,hint)
+            dispatchHintEvent("list",null,hint);
             // dispatchHintEvent("next", "4", hint);
         }
 
