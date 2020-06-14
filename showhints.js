@@ -270,7 +270,6 @@ define([
             // showing a list of hints
 
             var $q1_hint_list = $(`
-
                 <form>
                     <input type="radio" id="1-1" name="q_hint" value="1">
                     <label for="1-1">1-1</label><br>
@@ -279,6 +278,7 @@ define([
                     <input type="radio" id="1-3" name="q_hint" value="3">
                     <label for="1-3">1-3</label>
                 </form>`);
+
             var $q2_hint_list = $(`
                 <form>
                     <input type="radio" id="2-1" name="q_hint" value="1">
@@ -306,7 +306,7 @@ define([
             }
 
             var form_0 = $("<form></form>").attr("id", "form_0");
-            var hintList = $("<h4>" + "List of hints for this questions" + "<br> <br>" + which_list +  + "</h4>").attr("id", "hintList");
+            var hintList = $("<h4>" + "List of hints for this questions" + "<br> <br>" + which_list + "</h4>").attr("id", "hintList");
             form_0.append(hintList);
 
 
@@ -353,7 +353,6 @@ define([
                     }
                 }
             })
-            dispatchHintEvent("list",null,null);
             // dispatchHintEvent("next", "4", hint);
         }
 
