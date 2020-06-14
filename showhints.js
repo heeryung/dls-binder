@@ -576,7 +576,7 @@ define([
                 }
             });
 
-            if (which_used_hint_list.length != which_all_used {
+            if (which_used_hint_list.length != which_all_used) {
                 // if hints are not all used-up
                 if (which_used_hint_list.includes(index)){
                     // but if this particular hint has been inscripted as a cell already
