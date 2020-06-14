@@ -270,42 +270,52 @@ define([
             // showing a list of hints
 
             var $q1_hint_list = $(`
-                <form>
-                    <input type="radio" id="1-1" name="q_hint" value="1">
-                    <label for="1-1">1-1</label><br>
-                    <input type="radio" id="1-2" name="q_hint" value="2">
-                    <label for="1-2">1-2</label><br>
-                    <input type="radio" id="1-3" name="q_hint" value="3">
-                    <label for="1-3">1-3</label>
-                </form>`);
+                <h4> List of hints for this questions <br><br>
+                    <form>
+                        <input type="radio" id="1-1" name="q_hint" value="1">
+                        <label for="1-1">1-1</label><br>
+                        <input type="radio" id="1-2" name="q_hint" value="2">
+                        <label for="1-2">1-2</label><br>
+                        <input type="radio" id="1-3" name="q_hint" value="3">
+                        <label for="1-3">1-3</label>
+                    </form>
+                </h4>
+                `);
 
             var $q2_hint_list = $(`
-                <form>
-                    <input type="radio" id="2-1" name="q_hint" value="1">
-                    <label for="2-1">2-1</label><br>
-                    <input type="radio" id="2-2" name="q_hint" value="2">
-                    <label for="2-2">2-2</label><br>
-                </form>`);
+                <h4> List of hints for this questions <br><br>
+                    <form>
+                        <input type="radio" id="2-1" name="q_hint" value="1">
+                        <label for="2-1">2-1</label><br>
+                        <input type="radio" id="2-2" name="q_hint" value="2">
+                        <label for="2-2">2-2</label><br>
+                    </form>
+                </h4>
+                `);
 
             var $q3_hint_list = $(`
-                <form>
-                    <input type="radio" id="3-1" name="q_hint" value="1">
-                    <label for="3-1">3-1</label><br>
-                    <input type="radio" id="3-2" name="q_hint" value="2">
-                    <label for="3-2">3-2</label><br>
-                    <input type="radio" id="3-3" name="q_hint" value="3">
-                    <label for="3-3">3-3</label>
-                </form>`);
+                <h4> List of hints for this questions <br><br>
+                    <form>
+                        <input type="radio" id="3-1" name="q_hint" value="1">
+                        <label for="3-1">3-1</label><br>
+                        <input type="radio" id="3-2" name="q_hint" value="2">
+                        <label for="3-2">3-2</label><br>
+                        <input type="radio" id="3-3" name="q_hint" value="3">
+                        <label for="3-3">3-3</label>
+                    </form>
+                </h4>s
+                `);
 
             if (part_id == "fyhrwlzq") {
-                var which_list = $q1_hint_list;
+                var $which_list = $q1_hint_list;
             } else if (part_id == "ufxqepry") {
-                var which_list = $q2_hint_list;
+                var $which_list = $q2_hint_list;
             } else {
-                var which_list = $q3_hint_list;
+                var $which_list = $q3_hint_list;
             }
 
-            var form_0 = $("<h4>" + "List of hints for this questions" + "<br> <br>" + which_list + "</h4>").attr("id", "form_0");
+            var form_0 = $("<form></form>").attr("id", "form_0");
+            form_0.append($which_list);
 
             var array_hints = new Array();
             $.each(Hints, function (index, hint) {
