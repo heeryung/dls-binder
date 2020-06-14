@@ -95,12 +95,6 @@ define([
     var num_type_3 = type_3_questions.length;
     var num_type_4 = type_4_questions.length;
 
-
-//    var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
-//    var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
-//    var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
-//    var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
-
     function dispatchAssignConditionEvent() {
         let eventTitle = "AssignHintConditionEvent";
         let prompt1 = random_before;
@@ -272,7 +266,7 @@ define([
 
 
 
-        function list_of_hints(Hints, part_id, hintText, hint){
+        function list_of_hints(Hints, part_id){
             // showing a list of hints
 
             var $q1_hint_list = $(`
@@ -671,7 +665,7 @@ define([
                     var xml = new XMLHttpRequest();
                     xml.onreadystatechange = function () {
                         if (xml.readyState == 4 && xml.status == 200) {
-                            insertHint(JSON.parse(xml.responseText), part_id);
+                            list_of_hints(JSON.parse(xml.responseText), part_id);
                         }
                     }
                     var data = {"part_id": part_id};
