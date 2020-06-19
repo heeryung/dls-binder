@@ -670,7 +670,7 @@ define([
             // Save notebook everytime
             oldSaveNotebook();
         }
-s
+
         // todo: change the all_used_n value to be automatically extracted
         var used_hint_1 = new Array();
         var all_used_1 = 3;
