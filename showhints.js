@@ -653,6 +653,16 @@ define([
             oldSaveNotebook();
         }
 
+        // todo: change the all_used_n value to be automatically extracted
+        var used_hint_1 = new Array();
+        var all_used_1 = 3;
+        all_used_1 = all_used_1-1;
+        var used_hint_2 = new Array();
+        var all_used_2 = 2;
+        all_used_2 = all_used_2-1;
+        var used_hint_3 = new Array();
+        var all_used_3 = 3;
+        all_used_3 = all_used_3-1;
 
 
         var cells = Jupyter.notebook.get_cells();
