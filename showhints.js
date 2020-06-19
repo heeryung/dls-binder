@@ -95,6 +95,12 @@ define([
     var num_type_3 = type_3_questions.length;
     var num_type_4 = type_4_questions.length;
 
+
+//    var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
+//    var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
+//    var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
+//    var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
+
     function dispatchAssignConditionEvent() {
         let eventTitle = "AssignHintConditionEvent";
         let prompt1 = random_before;
@@ -153,9 +159,9 @@ define([
         // typeId: <1/2>
         function dispatchHintEvent(type, typeId = null, hint = null) {
             let mapTypeToEventName = {
-                prompt: "OpenHintPromptEvent",
                 list: "OpenHintListEvent",
                 hintChosen: "HintChosenEvent",
+                prompt: "OpenHintPromptEvent",
                 hint: "OpenHintAnswerEvent",
                 next: "ClickHintNextEvent",
                 response: "HintUserResponse"
@@ -265,10 +271,56 @@ define([
 
 
 
+        function showing_hint(Hints, part_id){
+            var array_hints = new Array();
+            $.each(Hints, function (index, hint) {
+                var temp = {
+                    "hint_id": index,
+                    "part_id": hint.part_id,
+                    "hint_order": hint.hint_order,
+                    "hint_text": hint.hint_text
+                };
+                array_hints.push(temp);
+            });
 
-        function list_of_hints(Hints, part_id){
-            // showing a list of hints
 
+            // Get the list of hints used
+            if (part_id == "fyhrwlzq") {
+                var which_used_hint_list = used_hint_1;
+                var which_all_used = all_used_1;
+            } else if (part_id == "ufxqepry") {
+                var which_used_hint_list = used_hint_2;
+                var which_all_used = all_used_2;
+            } else {
+                var which_used_hint_list = used_hint_3;
+                var which_all_used = all_used_3;
+            }
+
+            // if hints are not all used-up
+            if (which_used_hint_list.length != which_all_used) {
+
+                hint.random_before = random_before;
+                hint.random_after = random_after;
+
+                if (random_before === 0) {
+                    list_of_hints(hint, part_id);
+                    // hint_text(hint.hint_text, hint);
+                } else if (random_before === 1) {
+                    type_1_before(hint.hint_text, hint);
+                } else {
+                    type_2_before(hint.hint_text, hint);
+                }
+            } else {
+                // if hints are all used-up
+                $("#show-hint" + part_id).text("No More Hints to Show");
+                $("#show-hint" + part_id).attr("disabled", "disabled");
+            }
+            // Save notebook everytime
+            oldSaveNotebook();
+        }
+
+        function list_of_hints(hint, part_id){
+            dispatchHintEvent("list", "999", hint)
             var $q1_hint_list = $(`
                 <h4> List of hints for this questions <br><br>
                     <form>
@@ -317,18 +369,6 @@ define([
             var form_0 = $("<form></form>").attr("id", "form_0");
             form_0.append($which_list);
 
-            var array_hints = new Array();
-            $.each(Hints, function (index, hint) {
-                var temp = {
-                    "hint_id": index,
-                    "part_id": hint.part_id,
-                    "hint_order": hint.hint_order,
-                    "hint_text": hint.hint_text
-                };
-                array_hints.push(temp);
-            });
-
-
             dialog.modal({
                 title: i18n.msg._(' '),
                 keyboard_manager: Jupyter.notebook.keyboard_manager,
@@ -343,24 +383,25 @@ define([
                     'Next': {
                         'class': 'btn-primary', 'id': 'next',
                         'click': function () {
-                            var chosenHint = document.getElementsByName('q_hint');
+                            var chosenHintList = document.getElementsByName('q_hint');
 
-                            for(i = 0; i < chosenHint.length; i++) {
-                                if(chosenHint[i].checked){
-                                    var hint = array_hints[chosenHint[i].value - 1]; //chosenHint[i].value==hint_order
+                            for(i = 0; i < chosenHintList.length; i++) {
+                                if(chosenHintList[i].checked){
+                                    var chosenHint = array_hints[chosenHintList[i].value - 1]; //chosenHint[i].value==hint_order
                                     // Todo: Should I require hint reponses?
-                                    // Todo: link insertHint() here
-                                    insertHint(hint, part_id);
+                                   insertHint(chosenHint, part_id);
                                 } else {
                                     console.log("close")
                                     $('.close').css('display', 'none');
                                 }
                             }
+                            dispatchHintEvent('hintChosen', '999', hint)
+
                         }
                     }
                 }
             })
-            // dispatchHintEvent("next", "4", hint);
+
         }
 
 
@@ -372,7 +413,6 @@ define([
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             form.append(prompt);
             form.append(ans);
-
             dialog.modal({
                 title: i18n.msg._(' '),
                 keyboard_manager: Jupyter.notebook.keyboard_manager,
@@ -390,8 +430,9 @@ define([
                             hint.user_answer = $('#ans').val();
                             hint.prompt = type_1_questions[random_1]
                             dispatchHintEvent('response', '1', hint)
-                            hint_text(hintText, hint);
-                            // dispatchHintEvent("next", "1", hint);
+                            list_of_hints(hint, parti_id)
+                            // hint_text(hintText, hint);
+
                         }
                     }
                 }
@@ -423,7 +464,7 @@ define([
                             hint.user_answer = $('#ans').val();
                             hint.prompt = type_2_questions[random_2]
                             dispatchHintEvent('response', '2', hint)
-                            hint_text(hintText, hint);
+                            list_of_hints(hint, parti_id)
                             // dispatchHintEvent("next", "2", hint);
                         }
                     }
@@ -431,7 +472,8 @@ define([
             });
         }
 
-        function hint_text(hintText, hint) {
+        function hint_text(hintText, chosenHint) {
+            var hint = chosenHint;
             // dispatchHintEvent("hint", null, hint);
 
             var converter = new showdown.Converter(),
@@ -537,23 +579,12 @@ define([
         }
 
 
-        function insertHint(hint, part_id) {
+        function insertHint(chosenHint, part_id) {
+            var hint = chosenHint
             // Insert a markdown cell called "hint"
             var cells = Jupyter.notebook.get_cells();
             var index_hint = 0;
             var index = hint.hint_id;
-            // var array_hints = new Array();
-            // $.each(Hints, function (index, hint) {
-            //     var temp = {
-            //         "hint_id": index,
-            //         "part_id": hint.part_id,
-            //         "hint_order": hint.hint_order,
-            //         "hint_text": hint.hint_text
-            //     };
-            //     array_hints.push(temp);
-            // });
-            // var student_solution_code_index = 0;
-            // var part_description_index = 0;
 
             if (part_id == "fyhrwlzq") {
                 var which_used_hint_list = used_hint_1;
@@ -577,83 +608,51 @@ define([
                 }
             });
 
-            if (which_used_hint_list.length != which_all_used) {
-                // if hints are not all used-up
-                if (which_used_hint_list.includes(index)){
-                    // but if this particular hint has been inscripted as a cell already
-                    // do nothing.
-                    // or repeat everything except inscripting on the cell
-                    hint.random_before = random_before;
-                    hint.random_after = random_after;
 
-                    if (random_before === 0) {
-                        hint_text(hint.hint_text, hint);
-                    } else if (random_before === 1) {
-                        type_1_before(hint.hint_text, hint);
-                    } else {
-                        type_2_before(hint.hint_text, hint);
-                    }
-                }
+            // inscripting the hint cell
+            if (which_used_hint_list.includes(index)){
+                // but if this particular hint has been inscripted as a cell already
+                // do nothing.
+                // or repeat everything except inscripting the hint cell
+                hint_text(hint.hint_text, hint);
+            }
 
-                else {
-                    // if this is a request to a new hint
-                    hint.random_before = random_before;
-                    hint.random_after = random_after;
-
-
-                    if (random_before === 0) {
-                        hint_text(hint.hint_text, hint);
-                    } else if (random_before === 1) {
-                        type_1_before(hint.hint_text, hint);
-                    } else {
-                        type_2_before(hint.hint_text, hint);
-                    }
-                    index_hint = student_solution_code_index;
-                    Jupyter.notebook.insert_cell_at_index("markdown", index_hint);
-                    var cell = IPython.notebook.get_cell(index_hint);
-                    cell.code_mirror.doc.setValue(hint.hint_text);
+            else {
+                // if this is a request to a new hint
+                hint_text(hint.hint_text, hint);
+                index_hint = student_solution_code_index;
+                Jupyter.notebook.insert_cell_at_index("markdown", index_hint);
+                var cell = IPython.notebook.get_cell(index_hint);
+                cell.code_mirror.doc.setValue(hint.hint_text);
+                cell.metadata = {
+                    "part_id": part_id,
+                    "hint_id": hint.hint_id,
+                    "mentor_academy_cell_type": "hint",
+                    "hint_order": hint.hint_order
+                };
+                cell.focus_editor();
+                cell.set_text(hint.hint_text);
+                cell.unrender();
+                cell.render();
+                if (arra == array_hints.length - 1) {
+                    // If it's the last hint.
                     cell.metadata = {
                         "part_id": part_id,
                         "hint_id": hint.hint_id,
                         "mentor_academy_cell_type": "hint",
-                        "hint_order": hint.hint_order
+                        "hint_order": hint.hint_order,
+                        "last_hint": true
                     };
-                    cell.focus_editor();
-                    cell.set_text(hint.hint_text);
-                    cell.unrender();
-                    cell.render();
-                    if (arra == array_hints.length - 1) {
-                        // If it's the last hint.
-                        cell.metadata = {
-                            "part_id": part_id,
-                            "hint_id": hint.hint_id,
-                            "mentor_academy_cell_type": "hint",
-                            "hint_order": hint.hint_order,
-                            "last_hint": true
-                        };
-                        $("#show-hint" + part_id).text("No More Hints to Show");
-                        $("#show-hint" + part_id).attr("disabled", "disabled");
-                    }
+                    $("#show-hint" + part_id).text("No More Hints to Show");
+                    $("#show-hint" + part_id).attr("disabled", "disabled");
                 }
-            } else {
-                // if hints are all used-up
-                $("#show-hint" + part_id).text("No More Hints to Show");
-                $("#show-hint" + part_id).attr("disabled", "disabled");
             }
+
+
             // Save notebook everytime
             oldSaveNotebook();
         }
 
-        // todo: change the all_used_n value to be automatically extracted
-        var used_hint_1 = new Array();
-        var all_used_1 = 3;
-        all_used_1 = all_used_1-1;
-        var used_hint_2 = new Array();
-        var all_used_2 = 2;
-        all_used_2 = all_used_2-1;
-        var used_hint_3 = new Array();
-        var all_used_3 = 3;
-        all_used_3 = all_used_3-1;
 
 
         var cells = Jupyter.notebook.get_cells();
@@ -672,7 +671,8 @@ define([
                     var xml = new XMLHttpRequest();
                     xml.onreadystatechange = function () {
                         if (xml.readyState == 4 && xml.status == 200) {
-                            list_of_hints(JSON.parse(xml.responseText), part_id);
+                            // starting the whole process
+                            showing_hint(JSON.parse(xml.responseText), part_id);
                         }
                     }
                     var data = {"part_id": part_id};
