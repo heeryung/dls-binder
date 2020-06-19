@@ -307,7 +307,16 @@ define([
         }
 
         function list_of_hints(Hints, part_id){
-            dispatchHintEvent("list", "999", hint)
+
+            var temporary = {
+                "hint_id": "TBD",
+                "part_id": part_id,
+                "hint_order": "TBD",
+                "hint_text": "TBD"
+            };
+
+
+           dispatchHintEvent("list", "999", temporary)
             var $q1_hint_list = $(`
                 <h4> List of hints for this questions <br><br>
                     <form>
@@ -395,7 +404,7 @@ define([
                                     $('.close').css('display', 'none');
                                 }
                             }
-                            dispatchHintEvent('hintChosen', '999', hint)
+//                            dispatchHintEvent('hintChosen', '999', hint)
 
                         }
                     }
