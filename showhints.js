@@ -272,16 +272,6 @@ define([
 
 
         function showing_hint(Hints, part_id){
-            var array_hints = new Array();
-            $.each(Hints, function (index, hint) {
-                var temp = {
-                    "hint_id": index,
-                    "part_id": hint.part_id,
-                    "hint_order": hint.hint_order,
-                    "hint_text": hint.hint_text
-                };
-                array_hints.push(temp);
-            });
 
 
             // Get the list of hints used
@@ -303,12 +293,12 @@ define([
                 hint.random_after = random_after;
 
                 if (random_before === 0) {
-                    list_of_hints(hint, part_id);
+                    list_of_hints(Hints, part_id);
                     // hint_text(hint.hint_text, hint);
                 } else if (random_before === 1) {
-                    type_1_before(hint.hint_text, hint);
+                    type_1_before(Hints, part_id);
                 } else {
-                    type_2_before(hint.hint_text, hint);
+                    type_2_before(Hints, part_id);
                 }
             } else {
                 // if hints are all used-up
@@ -319,7 +309,7 @@ define([
             oldSaveNotebook();
         }
 
-        function list_of_hints(hint, part_id){
+        function list_of_hints(Hints, part_id){
             dispatchHintEvent("list", "999", hint)
             var $q1_hint_list = $(`
                 <h4> List of hints for this questions <br><br>
@@ -366,6 +356,19 @@ define([
                 var $which_list = $q3_hint_list;
             }
 
+
+            var array_hints = new Array();
+            $.each(Hints, function (index, hint) {
+                var temp = {
+                    "hint_id": index,
+                    "part_id": hint.part_id,
+                    "hint_order": hint.hint_order,
+                    "hint_text": hint.hint_text
+                };
+                array_hints.push(temp);
+            });
+
+
             var form_0 = $("<form></form>").attr("id", "form_0");
             form_0.append($which_list);
 
@@ -405,7 +408,7 @@ define([
         }
 
 
-        function type_1_before(hintText, hint) {
+        function type_1_before(Hints, part_id) {
             // dispatchHintEvent("prompt", "1", hint);
             var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
             var form = $("<form></form>").attr("id", "form");
@@ -413,6 +416,14 @@ define([
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             form.append(prompt);
             form.append(ans);
+
+            var temp = {
+                "hint_id": "TBD",
+                "part_id": part_id,
+                "hint_order": "TBD",
+                "hint_text": "TBD"
+            };
+
             dialog.modal({
                 title: i18n.msg._(' '),
                 keyboard_manager: Jupyter.notebook.keyboard_manager,
@@ -427,11 +438,10 @@ define([
                     'Next': {
                         'class': 'btn-primary', 'id': 'next',
                         'click': function () {
-                            hint.user_answer = $('#ans').val();
-                            hint.prompt = type_1_questions[random_1]
-                            dispatchHintEvent('response', '1', hint)
-                            list_of_hints(hint, parti_id)
-                            // hint_text(hintText, hint);
+                            temp.user_answer = $('#ans').val();
+                            temp.prompt = type_1_questions[random_1]
+                            dispatchHintEvent('response', '1', temp)
+                            list_of_hints(Hints, part_id)
 
                         }
                     }
@@ -439,7 +449,7 @@ define([
             });
         }
 
-        function type_2_before(hintText, hint) {
+        function type_2_before(Hints, part_id)) {
             // dispatchHintEvent("prompt", "2", hint);
             var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
             var form = $("<form></form>").attr("id", "form");
@@ -447,6 +457,14 @@ define([
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             form.append(prompt);
             form.append(ans);
+
+            var temp = {
+                "hint_id": "TBD",
+                "part_id": part_id,
+                "hint_order": "TBD",
+                "hint_text": "TBD"
+            };
+
             dialog.modal({
                 title: i18n.msg._(' '),
                 body: form,
@@ -463,8 +481,8 @@ define([
                         'click': function () {
                             hint.user_answer = $('#ans').val();
                             hint.prompt = type_2_questions[random_2]
-                            dispatchHintEvent('response', '2', hint)
-                            list_of_hints(hint, parti_id)
+                            dispatchHintEvent('response', '2', temp)
+                            list_of_hints(Hints, parti_id)
                             // dispatchHintEvent("next", "2", hint);
                         }
                     }
@@ -652,7 +670,7 @@ define([
             // Save notebook everytime
             oldSaveNotebook();
         }
-
+s
         // todo: change the all_used_n value to be automatically extracted
         var used_hint_1 = new Array();
         var all_used_1 = 3;
