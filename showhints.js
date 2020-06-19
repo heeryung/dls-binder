@@ -449,7 +449,7 @@ define([
             });
         }
 
-        function type_2_before(Hints, part_id)) {
+        function type_2_before(Hints, part_id) {
             // dispatchHintEvent("prompt", "2", hint);
             var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
             var form = $("<form></form>").attr("id", "form");
