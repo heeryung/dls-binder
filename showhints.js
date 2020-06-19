@@ -289,9 +289,6 @@ define([
             // if hints are not all used-up
             if (which_used_hint_list.length != which_all_used) {
 
-                hint.random_before = random_before;
-                hint.random_after = random_after;
-
                 if (random_before === 0) {
                     list_of_hints(Hints, part_id);
                     // hint_text(hint.hint_text, hint);
