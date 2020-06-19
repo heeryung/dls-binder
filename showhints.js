@@ -479,7 +479,7 @@ define([
                             temp.user_answer = $('#ans').val();
                             temp.prompt = type_2_questions[random_2]
                             dispatchHintEvent('response', '2', temp)
-                            list_of_hints(Hints, parti_id)
+                            list_of_hints(Hints, part_id)
                             // dispatchHintEvent("next", "2", hint);
                         }
                     }
