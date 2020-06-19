@@ -476,8 +476,8 @@ define([
                     'Next': {
                         'class': 'btn-primary', 'id': 'next',
                         'click': function () {
-                            hint.user_answer = $('#ans').val();
-                            hint.prompt = type_2_questions[random_2]
+                            temp.user_answer = $('#ans').val();
+                            temp.prompt = type_2_questions[random_2]
                             dispatchHintEvent('response', '2', temp)
                             list_of_hints(Hints, parti_id)
                             // dispatchHintEvent("next", "2", hint);
