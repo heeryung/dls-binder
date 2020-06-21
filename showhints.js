@@ -159,12 +159,12 @@ define([
         // typeId: <1/2>
         function dispatchHintEvent(type, typeId = null, hint = null) {
             let mapTypeToEventName = {
-                list: "OpenHintListEvent",
-                hintChosen: "HintChosenEvent",
-                prompt: "OpenHintPromptEvent",
-                hint: "OpenHintAnswerEvent",
+                list: "OpenHintListEvent", // regiesterd in jupyterevents.js
+                hintChosen: "HintChosenEvent", // registed in jupyterevents.js
+                prompt: "OpenHintPromptEvent", // registed in jupyterevents.js
+                hint: "OpenHintAnswerEvent", // registed in jupyterevents.js
                 next: "ClickHintNextEvent",
-                response: "HintUserResponse"
+                response: "HintUserResponse" // regiesterd in jupyterevents.js
             };
             let eventTitle = mapTypeToEventName[type];
             hint.type = type;
@@ -316,7 +316,7 @@ define([
             };
 
 
-           dispatchHintEvent("list", "999", temporary)
+           dispatchHintEvent("list", "000", temporary)
             var $q1_hint_list = $(`
                 <h4> List of hints for this questions <br><br>
                     <form>
@@ -345,11 +345,13 @@ define([
                 <h4> List of hints for this questions <br><br>
                     <form>
                         <input type="radio" id="3-1" name="q_hint" value="1">
-                        <label for="3-1">3-1</label><br>
+                        <label for="3-1">What is \`re.VERBOSE\`?</label><br>
                         <input type="radio" id="3-2" name="q_hint" value="2">
                         <label for="3-2">3-2</label><br>
                         <input type="radio" id="3-3" name="q_hint" value="3">
                         <label for="3-3">3-3</label>
+                        <input type="radio" id="3-3" name="q_hint" value="4">
+                        <label for="3-3">3-4</label>
                     </form>
                 </h4>s
                 `);
@@ -404,8 +406,7 @@ define([
                                     $('.close').css('display', 'none');
                                 }
                             }
-//                            dispatchHintEvent('hintChosen', '999', hint)
-
+                            dispatchHintEvent('hintChosen', '000', hint)
                         }
                     }
                 }
@@ -415,20 +416,19 @@ define([
 
 
         function type_1_before(Hints, part_id) {
-            // dispatchHintEvent("prompt", "1", hint);
-            var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
-            var form = $("<form></form>").attr("id", "form");
-            var prompt = $("<h4>" + "Prompt: " + type_1_questions[random_1] + "</h4>").attr("id", "prompt");
-            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
-            form.append(prompt);
-            form.append(ans);
-
             var temp = {
                 "hint_id": "TBD",
                 "part_id": part_id,
                 "hint_order": "TBD",
                 "hint_text": "TBD"
             };
+            dispatchHintEvent("prompt", "1", temp);
+            var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
+            var form = $("<form></form>").attr("id", "form");
+            var prompt = $("<h4>" + "Prompt: " + type_1_questions[random_1] + "</h4>").attr("id", "prompt");
+            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
+            form.append(prompt);
+            form.append(ans);
 
             dialog.modal({
                 title: i18n.msg._(' '),
@@ -456,7 +456,13 @@ define([
         }
 
         function type_2_before(Hints, part_id) {
-            // dispatchHintEvent("prompt", "2", hint);
+            var temp = {
+                "hint_id": "TBD",
+                "part_id": part_id,
+                "hint_order": "TBD",
+                "hint_text": "TBD"
+            };
+            dispatchHintEvent("prompt", "2", temp);
             var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>"  + "Prompt: " + type_2_questions[random_2] + "</h4>").attr("id", "prompt");
@@ -498,7 +504,7 @@ define([
 
         function hint_text(hintText, chosenHint) {
             var hint = chosenHint;
-            // dispatchHintEvent("hint", null, hint);
+            dispatchHintEvent("hint", "non-prompt", hint);
 
             var converter = new showdown.Converter(),
             text = hintText,
@@ -537,7 +543,7 @@ define([
         }
 
         function type_3_after(hint) {
-            // dispatchHintEvent("prompt", "3", hint);
+            dispatchHintEvent("prompt", "3", hint);
             var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + "Prompt: " + type_3_questions[random_3] + "</h4>").attr("id", "prompt");
@@ -570,7 +576,7 @@ define([
         }
 
         function type_4_after(hint) {
-            // dispatchHintEvent("prompt", "4", hint);
+            dispatchHintEvent("prompt", "4", hint);
             var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + "Prompt: " + type_4_questions[random_4] + "</h4>").attr("id", "prompt");
@@ -685,7 +691,7 @@ define([
         var all_used_2 = 2;
         all_used_2 = all_used_2-1;
         var used_hint_3 = new Array();
-        var all_used_3 = 3;
+        var all_used_3 = 4;
         all_used_3 = all_used_3-1;
 
 
