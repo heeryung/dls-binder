@@ -398,7 +398,7 @@ define([
 
                             for(i = 0; i < chosenHintList.length; i++) {
                                 if(chosenHintList[i].checked){
-                                    console.log(chosenHintLst);
+                                    console.log(chosenHintList);
                                     var chosenHint = array_hints[chosenHintList[i].value - 1]; //chosenHint[i].value==hint_order
                                     // Todo: Should I require hint reponses?
                                    insertHint(chosenHint, part_id);
