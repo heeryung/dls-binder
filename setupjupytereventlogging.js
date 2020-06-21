@@ -23,18 +23,21 @@ function load_ipython_extension(){
         logger.info(event.detail);
       };
       var jupyterEventsToLog = [
-        JupyterEvents.OpenNotebookEvent,
-        JupyterEvents.BeginExecuteCellEvent,
-        JupyterEvents.FinishExecuteCellEvent,
-        JupyterEvents.SaveNotebookEvent,
-        JupyterEvents.ShowHintEvent,
-        JupyterEvents.ChangeCellsInViewEvent,
-        // JupyterEvents.SrlDisplayHintPromptEvent,
-        // JupyterEvents.SrlDisplayHintAnswerEvent,
-        // JupyterEvents.SrlClickNextEvent,
-        JupyterEvents.SrlAssignConditionEvent,
-        JupyterEvents.SrlHintUserResponse
-      ];
+        JupyterEvents.OpenNotebookEvent = OpenNotebookEvent;
+        JupyterEvents.BeginExecuteCellEvent = BeginExecuteCellEvent;
+        JupyterEvents.FinishExecuteCellEvent = FinishExecuteCellEvent;
+        JupyterEvents.SaveNotebookEvent = SaveNotebookEvent;
+        JupyterEvents.ShowHintEvent = ShowHintEvent;
+        JupyterEvents.ChangeCellsInViewEvent = ChangeCellsInViewEvent;
+        // JupyterEvents.SrlDisplayHintPromptEvent = SrlDisplayHintPromptEvent;
+        // JupyterEvents.SrlDisplayHintAnswerEvent = SrlDisplayHintAnswerEvent;
+        // JupyterEvents.SrlClickNextEvent = SrlClickNextEvent;
+        JupyterEvents.SrlAssignConditionEvent = SrlAssignConditionEvent;
+        JupyterEvents.SrlHintUserResponseEvent = SrlHintUserResponseEvent;
+        JupyterEvents.SrlOpenHintListEvent = SrlOpenHintListEvent;
+        JupyterEvents.SrlHintChosenEvent = SrlHintChosenEvent;
+        JupyterEvents.SrlOpenHintPromptEvent = SrlOpenHintPromptEvent;
+        JupyterEvents.SrlOpenHintAnswerEvent = SrlOpenHintAnswerEvent;      ];
       jupyterEventsToLog.forEach(function(jupyterEvent, index) {
         document.addEventListener(jupyterEvent.name, logRecord, false);
         var boundJupyterEvent = new jupyterEvent();
@@ -47,4 +50,3 @@ function load_ipython_extension(){
 		load_ipython_extension: load_ipython_extension
 	};
 });
-
