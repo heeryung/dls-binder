@@ -406,7 +406,7 @@ define([
                                     $('.close').css('display', 'none');
                                 }
                             }
-                            dispatchHintEvent('hintChosen', '000', hint)
+                            dispatchHintEvent('hintChosen', '000', chosenHint)
                         }
                     }
                 }
