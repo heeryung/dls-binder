@@ -345,12 +345,12 @@ define([
                 <h4> List of hints for this questions <br><br>
                     <form>
                         <input type="radio" id="3-1" name="q_hint" value="1">
-                        <label for="3-1">What is \`re.VERBOSE\`?</label><br>
+                        <label for="3-1">What is re.VERBOSE?</label><br>
                         <input type="radio" id="3-2" name="q_hint" value="2">
                         <label for="3-2">3-2</label><br>
                         <input type="radio" id="3-3" name="q_hint" value="3">
-                        <label for="3-3">3-3</label>
-                        <input type="radio" id="3-3" name="q_hint" value="4">
+                        <label for="3-3">3-3</label><br>
+                        <input type="radio" id="3-4" name="q_hint" value="4">
                         <label for="3-3">3-4</label>
                     </form>
                 </h4>s
@@ -398,6 +398,7 @@ define([
 
                             for(i = 0; i < chosenHintList.length; i++) {
                                 if(chosenHintList[i].checked){
+                                    cnnsole.log(chosenHintLst);
                                     var chosenHint = array_hints[chosenHintList[i].value - 1]; //chosenHint[i].value==hint_order
                                     // Todo: Should I require hint reponses?
                                    insertHint(chosenHint, part_id);
