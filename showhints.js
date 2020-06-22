@@ -426,7 +426,7 @@ define([
             dispatchHintEvent("prompt", "1", temp);
             var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
             var form = $("<form></form>").attr("id", "form");
-            var prompt = $("<h4>" + "Prompt: " + type_1_questions[random_1] + "</h4>").attr("id", "prompt");
+            var prompt = $("<h4>" + "Let's reflect!: " + type_1_questions[random_1] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             form.append(prompt);
             form.append(ans);
@@ -466,7 +466,7 @@ define([
             dispatchHintEvent("prompt", "2", temp);
             var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
             var form = $("<form></form>").attr("id", "form");
-            var prompt = $("<h4>"  + "Prompt: " + type_2_questions[random_2] + "</h4>").attr("id", "prompt");
+            var prompt = $("<h4>"  + "Let's plan!: " + type_2_questions[random_2] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             form.append(prompt);
             form.append(ans);
@@ -547,7 +547,7 @@ define([
             dispatchHintEvent("prompt", "3", hint);
             var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
             var form = $("<form></form>").attr("id", "form");
-            var prompt = $("<h4>" + "Prompt: " + type_3_questions[random_3] + "</h4>").attr("id", "prompt");
+            var prompt = $("<h4>" + "Let's reflect!: " + type_3_questions[random_3] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             Jupyter.keyboard_manager.register_events(ans);
             form.append(prompt);
@@ -580,7 +580,7 @@ define([
             dispatchHintEvent("prompt", "4", hint);
             var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
             var form = $("<form></form>").attr("id", "form");
-            var prompt = $("<h4>" + "Prompt: " + type_4_questions[random_4] + "</h4>").attr("id", "prompt");
+            var prompt = $("<h4>" + "Let's plan!: " + type_4_questions[random_4] + "</h4>").attr("id", "prompt");
             var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
             Jupyter.keyboard_manager.register_events(ans);
             form.append(prompt);
