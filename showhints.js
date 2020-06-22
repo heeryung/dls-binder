@@ -626,7 +626,6 @@ define([
                 var which_all_used = all_used_3;
             }
 
-            which_used_hint_list.push(index);
 
             cells.forEach(function (cell, index) {
                 if (cell.metadata.mentor_academy_cell_type == "part_student_solution_code" && cell.metadata.part_id == part_id) {
@@ -649,6 +648,7 @@ define([
 
             else {
                 // if this is a request to a new hint
+                which_used_hint_list.push(index);
                 hint_text(hint.hint_text, hint);
                 index_hint = student_solution_code_index;
                 Jupyter.notebook.insert_cell_at_index("markdown", index_hint);
