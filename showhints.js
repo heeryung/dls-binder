@@ -318,7 +318,7 @@ define([
 
            dispatchHintEvent("list", "000", temporary)
             var $q1_hint_list = $(`
-                <h4> List of hints for this questions <br><br>
+                <h4> Choose one of the topics below for a hint <br><br>
                     <form>
                         <input type="radio" id="1-1" name="q_hint" value="1">
                         <label for="1-1">Matching <code>A</code> followed by <code>B</code></label><br>
@@ -331,7 +331,7 @@ define([
                 `);
 
             var $q2_hint_list = $(`
-                <h4> List of hints for this questions <br><br>
+                <h4>  Choose one of the topics below for a hint <br><br>
                     <form>
                         <input type="radio" id="2-1" name="q_hint" value="1">
                         <label for="2-1">Extracting symbols using look-ahead</label><br>
@@ -342,7 +342,7 @@ define([
                 `);
 
             var $q3_hint_list = $(`
-                <h4> List of hints for this questions <br><br>
+                <h4>  Choose one of the topics below for a hint <br><br>
                     <form>
                         <input type="radio" id="3-1" name="q_hint" value="1">
                         <label for="3-1">What is <code>re.VERBOSE</code>?</label><br>
