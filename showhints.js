@@ -649,7 +649,6 @@ define([
 
             else {
                 // if this is a request to a new hint
-                which_used_hint_list.push(index);
                 hint_text(hint.hint_text, hint);
                 index_hint = student_solution_code_index;
                 Jupyter.notebook.insert_cell_at_index("markdown", index_hint);
@@ -678,6 +677,7 @@ define([
                     $("#show-hint" + part_id).text("No More Hints to Show");
                     $("#show-hint" + part_id).attr("disabled", "disabled");
                 }
+                which_used_hint_list.push(index);    
             }
 
             // Save notebook everytime
