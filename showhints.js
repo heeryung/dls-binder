@@ -321,11 +321,11 @@ define([
                 <h4> List of hints for this questions <br><br>
                     <form>
                         <input type="radio" id="1-1" name="q_hint" value="1">
-                        <label for="1-1">1-1</label><br>
+                        <label for="1-1">Matching <code>A</code> followed by <code>B</code></label><br>
                         <input type="radio" id="1-2" name="q_hint" value="2">
-                        <label for="1-2">1-2</label><br>
+                        <label for="1-2">Finding one or more symbols</label><br>
                         <input type="radio" id="1-3" name="q_hint" value="3">
-                        <label for="1-3">1-3</label>
+                        <label for="1-3">Generating a list of matches</label>
                     </form>
                 </h4>
                 `);
@@ -334,9 +334,9 @@ define([
                 <h4> List of hints for this questions <br><br>
                     <form>
                         <input type="radio" id="2-1" name="q_hint" value="1">
-                        <label for="2-1">2-1</label><br>
+                        <label for="2-1">Extracting symbols using look-ahead</label><br>
                         <input type="radio" id="2-2" name="q_hint" value="2">
-                        <label for="2-2">2-2</label><br>
+                        <label for="2-2">Including both a character and a space</label><br>
                     </form>
                 </h4>
                 `);
@@ -345,13 +345,13 @@ define([
                 <h4> List of hints for this questions <br><br>
                     <form>
                         <input type="radio" id="3-1" name="q_hint" value="1">
-                        <label for="3-1">What is re.VERBOSE?</label><br>
+                        <label for="3-1">What is <code>re.VERBOSE</code>?</label><br>
                         <input type="radio" id="3-2" name="q_hint" value="2">
-                        <label for="3-2">3-2</label><br>
+                        <label for="3-2">Creating a dictionary with keys</label><br>
                         <input type="radio" id="3-3" name="q_hint" value="3">
-                        <label for="3-3">3-3</label><br>
+                        <label for="3-3">Difference between <code>.</code> and <code>\.</code></label><br>
                         <input type="radio" id="3-4" name="q_hint" value="4">
-                        <label for="3-3">3-4</label>
+                        <label for="3-4">Iterating through matches</label>
                     </form>
                 </h4>s
                 `);
