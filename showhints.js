@@ -627,7 +627,6 @@ define([
                 var which_all_used = all_used_3;
             }
 
-            which_used_hint_list.push(index);
 
             cells.forEach(function (cell, index) {
                 if (cell.metadata.mentor_academy_cell_type == "part_student_solution_code" && cell.metadata.part_id == part_id) {
@@ -650,6 +649,7 @@ define([
 
             else {
                 // if this is a request to a new hint
+                which_used_hint_list.push(index);
                 hint_text(hint.hint_text, hint);
                 index_hint = student_solution_code_index;
                 Jupyter.notebook.insert_cell_at_index("markdown", index_hint);
@@ -665,7 +665,8 @@ define([
                 cell.set_text(hint.hint_text);
                 cell.unrender();
                 cell.render();
-                if (arra == array_hints.length - 1) {
+//                if (arra == array_hints.length - 1) {
+               if (which_used_hint_list.length == which_all_used) {
                     // If it's the last hint.
                     cell.metadata = {
                         "part_id": part_id,
