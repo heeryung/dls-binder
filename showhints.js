@@ -626,6 +626,7 @@ define([
                 var which_all_used = all_used_3;
             }
 
+            which_used_hint_list.push(index);
 
             cells.forEach(function (cell, index) {
                 if (cell.metadata.mentor_academy_cell_type == "part_student_solution_code" && cell.metadata.part_id == part_id) {
@@ -676,7 +677,6 @@ define([
                     $("#show-hint" + part_id).text("No More Hints to Show");
                     $("#show-hint" + part_id).attr("disabled", "disabled");
                 }
-                which_used_hint_list.push(index);
             }
 
             // Save notebook everytime
