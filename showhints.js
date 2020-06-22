@@ -398,7 +398,6 @@ define([
 
                             for(i = 0; i < chosenHintList.length; i++) {
                                 if(chosenHintList[i].checked){
-                                    console.log(chosenHintList);
                                     var chosenHint = array_hints[chosenHintList[i].value - 1]; //chosenHint[i].value==hint_order
                                     // Todo: Should I require hint reponses?
                                    insertHint(chosenHint, part_id);
@@ -611,7 +610,7 @@ define([
 
 
         function insertHint(chosenHint, part_id) {
-            var hint = chosenHint
+            var hint = chosenHint;
             // Insert a markdown cell called "hint"
             var cells = Jupyter.notebook.get_cells();
             var index_hint = 0;
@@ -640,8 +639,9 @@ define([
             });
 
 
+            console.log(which_used_hint_list)
             // inscripting the hint cell
-            if (which_used_hint_list.includes(index)){
+            if (which_used_hint_list.includes(index) == true){
                 // but if this particular hint has been inscripted as a cell already
                 // do nothing.
                 // or repeat everything except inscripting the hint cell
@@ -678,7 +678,6 @@ define([
                     $("#show-hint" + part_id).attr("disabled", "disabled");
                 }
             }
-
 
             // Save notebook everytime
             oldSaveNotebook();
