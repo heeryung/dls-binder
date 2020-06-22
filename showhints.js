@@ -666,7 +666,7 @@ define([
                 cell.unrender();
                 cell.render();
 //                if (arra == array_hints.length - 1) {
-               if (which_used_hint_list.length == which_all_used) {
+               if (which_used_hint_list.length == which_all_used+1) {
                     // If it's the last hint.
                     cell.metadata = {
                         "part_id": part_id,
