@@ -349,7 +349,7 @@ define([
                         <input type="radio" id="3-2" name="q_hint" value="2">
                         <label for="3-2">Creating a dictionary with keys</label><br>
                         <input type="radio" id="3-3" name="q_hint" value="3">
-                        <label for="3-3">Difference between <code>.</code> and <code>\.</code></label><br>
+                        <label for="3-3">Difference between <code>.</code> and <code>\\.</code></label><br>
                         <input type="radio" id="3-4" name="q_hint" value="4">
                         <label for="3-4">Iterating through matches</label>
                     </form>
