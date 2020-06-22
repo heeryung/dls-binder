@@ -287,8 +287,7 @@ define([
             }
 
             // if hints are not all used-up
-            if (which_used_hint_list.length != which_all_used) {
-
+            if (hich_used_hint_list.length == which_all_used+1) {
                 if (random_before === 0) {
                     list_of_hints(Hints, part_id);
                     // hint_text(hint.hint_text, hint);
@@ -677,7 +676,7 @@ define([
                     $("#show-hint" + part_id).text("No More Hints to Show");
                     $("#show-hint" + part_id).attr("disabled", "disabled");
                 }
-                which_used_hint_list.push(index);    
+                which_used_hint_list.push(index);
             }
 
             // Save notebook everytime
@@ -686,13 +685,13 @@ define([
 
         // todo: change the all_used_n value to be automatically extracted
         var used_hint_1 = new Array();
-        var all_used_1 = 3;
+        var all_used_1 = 3; //array length
         all_used_1 = all_used_1-1;
         var used_hint_2 = new Array();
-        var all_used_2 = 2;
+        var all_used_2 = 2; //array length
         all_used_2 = all_used_2-1;
         var used_hint_3 = new Array();
-        var all_used_3 = 4;
+        var all_used_3 = 4; //array length
         all_used_3 = all_used_3-1;
 
 
