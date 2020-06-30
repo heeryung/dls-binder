@@ -21,39 +21,50 @@ define([
     var questionId = Jupyter.notebook.get_cell(0).metadata.question_id;
     Math.seedrandom(username + questionId);
     var type_1_questions = new Array();  //Type 1 (reflection-before)
-    type_1_questions.push("What are you hoping to get help with?");
-    type_1_questions.push("Can you explain where you get stuck?");
-    type_1_questions.push("What are you confused about right now?");
-    type_1_questions.push("What part of the problem or task presents the challenge?");
-    type_1_questions.push("What question do you wish you could ask now?");
-    type_1_questions.push("What piece of information are you missing at the moment?");
-    type_1_questions.push("What do you think the problem is asking you to do?");
-    type_1_questions.push("Why is your current direction the right way to solve the task?");
-    type_1_questions.push("How well is your current approach to this problem working?");
+    // type_1_questions.push("What are you hoping to get help with?");
+    // type_1_questions.push("Can you explain where you get stuck?");
+    // type_1_questions.push("What are you confused about right now?");
+    // type_1_questions.push("What part of the problem or task presents the challenge?");
+    // type_1_questions.push("What question do you wish you could ask now?");
+    // type_1_questions.push("What piece of information are you missing at the moment?");
+    // type_1_questions.push("What do you think the problem is asking you to do?");
+    // type_1_questions.push("Why is your current direction the right way to solve the task?");
+    // type_1_questions.push("How well is your current approach to this problem working?");
+    type_1_questions.push("Reconsider the goal of the problem. In your own words, what do you think the problem is asking you to do?")
+    type_1_questions.push("Consider the hardest part of the problem. Which part of problem is the most challenging?")
+    type_1_questions.push("Reflect on the problem you are solving. What are you confused of right now?")
 
     var type_2_questions = new Array(); //Type 2 (planning-before)
-    type_2_questions.push("What is the step you need to take next?");
-    type_2_questions.push("What is your plan for solving the task if the hint helps you with the present obstacle?");
-    type_2_questions.push("Is there a sub-goal you can set that will help you solve the entire problem?");
-    type_2_questions.push("Can you break the larger problem into smaller parts, and tackle them one at a time?");
-    type_2_questions.push("What should be the next steps that you will take to solve the problem?");
+    // type_2_questions.push("What is the step you need to take next?");
+    // type_2_questions.push("What is your plan for solving the task if the hint helps you with the present obstacle?");
+    // type_2_questions.push("Is there a sub-goal you can set that will help you solve the entire problem?");
+    // type_2_questions.push("Can you break the larger problem into smaller parts, and tackle them one at a time?");
+    // type_2_questions.push("What should be the next steps that you will take to solve the problem?");
+    type_2_questions.push("Think about how you are tackling this problem. What is the step you need to take next?")
+    type_2_questions.push("Consider your strategy for this question. What should be the next steps that you will take to solve the problem?");
+    type_2_questions.push("Consider just a part of this problem. Is there a sub-goal that will help you progress in solving this problem?");
+    // We would like to understand your problem solving process by asking these questions.
 
     var type_3_questions = new Array(); //Type 3 (reflection-after)
-    type_3_questions.push("How did the hint help you? Did the hint resolve some misconceptions or provide you with the missing information?");
-    type_3_questions.push("Does this hint suggest you might have a mistaken belief or an incorrect assumption? If yes, what is it?");
-    type_3_questions.push("Does anything in this hint conflict with the way you understood the problem? If yes, what is it?");
-    type_3_questions.push("How would you explain this hint in your own words?");
-    type_3_questions.push("How could you explain to someone else what this hint is saying?");
+    // type_3_questions.push("How did the hint help you? Did the hint resolve some misconceptions or provide you with the missing information?");
+    // type_3_questions.push("Does this hint suggest you might have a mistaken belief or an incorrect assumption? If yes, what is it?");
+    // type_3_questions.push("Does anything in this hint conflict with the way you understood the problem? If yes, what is it?");
+    // type_3_questions.push("How would you explain this hint in your own words?");
+    // type_3_questions.push("How could you explain to someone else what this hint is saying?");
+    // type_3_questions.push("Was the hint helpful? If so, what kind of assistance did it offer to you?");
+    type_3_questions.push("Was the hint helpful? Did the hint resolve misconception you had?");
     type_3_questions.push("Was the hint helpful? If so, what kind of assistance did it offer to you?");
+    type_3_questions.push("Was the hint helpful? If so, what new information did you learn?");
 
     var type_4_questions = new Array();  //Type 4 (planning-after)
-    type_4_questions.push("How does this hint make you rethink the way you're approaching the problem?");
-    type_4_questions.push("How do you intend to use this hint to move forward?");
-    type_4_questions.push("How will you use this hint in solving the problem?");
-    type_4_questions.push("How do you intend to apply the hint in solving the current task?");
-    type_4_questions.push("How did the hint lead you to rethink your initial plans to solve the task?");
-    type_4_questions.push("What would be the next step that you would take?");
-
+    // type_4_questions.push("How do you intend to use this hint to move forward?");
+    // type_4_questions.push("How will you use this hint in solving the problem?");
+    // type_4_questions.push("How do you intend to apply the hint in solving the current task?");
+    // type_4_questions.push("What would be the next step that you would take?");
+    type_4_questions.push("Was the hint helpful? How do you intend to use this hint to move forward?");
+    type_4_questions.push("Was the hint helpful? How will you use this hint to solve the problem?");
+    type_4_questions.push("Was the hint helpful? What are the next steps that you will take?");
+    // We would like to understand what kinds of hints we can add for other students?
 
 //     if (window.performance && window.performance.navigation.type == window.performance.navigation.TYPE_RELOAD) {
 //         //    var navVar = "reload";
@@ -425,7 +436,7 @@ define([
             var random_1 = Math.floor(Math.random() * num_type_1);  // Type 1 before
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + "Let's reflect!: " + type_1_questions[random_1] + "</h4>").attr("id", "prompt");
-            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
+            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your response here. Thanks for helping us understand how you think!'/></div>");
             form.append(prompt);
             form.append(ans);
 
@@ -465,7 +476,7 @@ define([
             var random_2 = Math.floor(Math.random() * num_type_2);  // Type 2 before
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>"  + "Let's plan!: " + type_2_questions[random_2] + "</h4>").attr("id", "prompt");
-            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
+            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your response here. Thanks for helping us understand how you think!'/></div>");
             form.append(prompt);
             form.append(ans);
 
@@ -546,7 +557,7 @@ define([
             var random_3 = Math.floor(Math.random() * num_type_3);  // Type 3 after
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + "Let's reflect!: " + type_3_questions[random_3] + "</h4>").attr("id", "prompt");
-            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
+            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your response here. Thanks for helping us improve hints for other students!'/></div>");
             Jupyter.keyboard_manager.register_events(ans);
             form.append(prompt);
             form.append(ans);
@@ -579,7 +590,7 @@ define([
             var random_4 = Math.floor(Math.random() * num_type_4);  // Type 4 after
             var form = $("<form></form>").attr("id", "form");
             var prompt = $("<h4>" + "Let's plan!: " + type_4_questions[random_4] + "</h4>").attr("id", "prompt");
-            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your Answer'/></div>");
+            var ans = $("<div><textarea rows='5' style='max-width: 100%; width: 100%' id='ans' placeholder = 'Your response here. Thanks for helping us improve hints for other students!'/></div>");
             Jupyter.keyboard_manager.register_events(ans);
             form.append(prompt);
             form.append(ans);
