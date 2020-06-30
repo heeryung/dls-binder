@@ -1,4 +1,3 @@
-
 define([
     'jquery',
     'require',
@@ -29,16 +28,12 @@ function load_ipython_extension(){
         JupyterEvents.SaveNotebookEvent,
         JupyterEvents.ShowHintEvent,
         JupyterEvents.ChangeCellsInViewEvent,
-        // JupyterEvents.SrlDisplayHintPromptEvent = SrlDisplayHintPromptEvent;
-        // JupyterEvents.SrlDisplayHintAnswerEvent = SrlDisplayHintAnswerEvent;
-        // JupyterEvents.SrlClickNextEvent = SrlClickNextEvent;
+        // JupyterEvents.SrlDisplayHintPromptEvent,
+        // JupyterEvents.SrlDisplayHintAnswerEvent,
+        // JupyterEvents.SrlClickNextEvent,
         JupyterEvents.SrlAssignConditionEvent,
-        JupyterEvents.SrlHintUserResponseEvent,
-        JupyterEvents.SrlOpenHintListEvent,
-        JupyterEvents.SrlHintChosenEvent,
-        JupyterEvents.SrlOpenHintPromptEvent,
-        JupyterEvents.SrlOpenHintAnswerEvent
-    ];
+        JupyterEvents.SrlHintUserResponse
+      ];
       jupyterEventsToLog.forEach(function(jupyterEvent, index) {
         document.addEventListener(jupyterEvent.name, logRecord, false);
         var boundJupyterEvent = new jupyterEvent();

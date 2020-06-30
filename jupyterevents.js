@@ -293,18 +293,82 @@ define([
         Trigger: User has answered a prompt and clicked Next
         Additional Data:
     */
-   class SrlHintUserResponse extends JupyterEvent {
+   class SrlHintUserResponseEvent extends JupyterEvent {
     bindJupyterEvent() {
       require(["nbextensions/showhints"], function() {
         document.addEventListener("HintUserResponse", function(event) {
           var details = {};
           details = event.detail;
-          JupyterEvent.prototype.dispatchJupyterEvent("SrlHintUserResponse", details);
+          JupyterEvent.prototype.dispatchJupyterEvent("SrlHintUserResponseEvent", details);
         }, false);
       });
     }
   }
-
+  ////////////////////////////////////////////////////////////////////////////////
+      /**
+          SrlOpenHintListEvent
+          Trigger: User has opnened a list of hints
+      */
+     class SrlOpenHintListEvent extends JupyterEvent {
+      bindJupyterEvent() {
+        require(["nbextensions/showhints"], function() {
+          document.addEventListener("OpenHintListEvent", function(event) {
+            var details = {};
+            details = event.detail;
+            JupyterEvent.prototype.dispatchJupyterEvent("SrlOpenHintListEvent", details);
+          }, false);
+        });
+      }
+    }
+////////////////////////////////////////////////////////////////////////////////
+    /**
+        SrlOpenHintPromptEvent
+        Trigger: User has opened a prompt
+    */
+    class SrlOpenHintPromptEvent extends JupyterEvent {
+        bindJupyterEvent() {
+          require(["nbextensions/showhints"], function() {
+            document.addEventListener("OpenHintPromptEvent", function(event) {
+              var details = {};
+              details = event.detail;
+              JupyterEvent.prototype.dispatchJupyterEvent("rlOpenHintPromptEvent", details);
+            }, false);
+          });
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////
+    /**
+        SrlHintChosenEvent
+        Trigger: User has chosen a hint from a list of hints
+        AdditionalData : chosen hint
+    */
+    class SrlHintChosenEvent extends JupyterEvent {
+        bindJupyterEvent() {
+          require(["nbextensions/showhints"], function() {
+            document.addEventListener("HintChosenEvent", function(event) {
+              var details = {};
+              details = event.detail;
+              JupyterEvent.prototype.dispatchJupyterEvent("SrlHintChosenEvent", details);
+            }, false);
+          });
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////
+    /**
+        SrlOpenHintList
+        Trigger: User has opened a hint popup.
+    */
+    class SrlOpenHintAnswerEvent extends JupyterEvent {
+        bindJupyterEvent() {
+          require(["nbextensions/showhints"], function() {
+            document.addEventListener("OpenHintAnswerEvent", function(event) {
+              var details = {};
+              details = event.detail;
+              JupyterEvent.prototype.dispatchJupyterEvent("SrlOpenHintAnswerEvent", details);
+            }, false);
+          });
+        }
+    }
 ////////////////////////////////////////////////////////////////////////////////
     /**
         SrlAssignConditionEvent
@@ -338,7 +402,11 @@ define([
     // JupyterEvents.SrlDisplayHintAnswerEvent = SrlDisplayHintAnswerEvent;
     // JupyterEvents.SrlClickNextEvent = SrlClickNextEvent;
     JupyterEvents.SrlAssignConditionEvent = SrlAssignConditionEvent;
-    JupyterEvents.SrlHintUserResponse = SrlHintUserResponse;
+    JupyterEvents.SrlHintUserResponseEvent = SrlHintUserResponseEvent;
+    JupyterEvents.SrlOpenHintListEvent = SrlOpenHintListEvent;
+    JupyterEvents.SrlHintChosenEvent = SrlHintChosenEvent;
+    JupyterEvents.SrlOpenHintPromptEvent = SrlOpenHintPromptEvent;
+    JupyterEvents.SrlOpenHintAnswerEvent = SrlOpenHintAnswerEvent;
 
     return JupyterEvents;
 });
